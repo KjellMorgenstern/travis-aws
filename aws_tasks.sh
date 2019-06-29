@@ -44,7 +44,7 @@ function x_aws_env {
             export PATH=$HOME/Library/Python/3.7/bin:$PATH
             ;;
         windows*)
-            # Export is done in .travis.yml
+            export "PATH=/c/Program Files/Amazon/AWSCLI/bin:$PATH"
             ;;
     esac
 }
