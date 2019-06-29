@@ -11,6 +11,7 @@ jobs:
       env:
       before_install:
         - mkdir -p ~/$TRAVIS_BUILD_NUMBER
+        - export "PATH=/c/Program Files/Amazon/AWSCLI/bin:$PATH"
         - ./aws_tasks.sh setup
 
       script:
