@@ -14,7 +14,11 @@ jobs:
         - ./aws_tasks.sh setup
 
       script:
-          - echo "Hello world" > ~/$TRAVIS_BUILD_NUMBER/hello_windows.txt
+          - ./release_fritzing.bat
+          - ls .
+          - ls ..
+          - cp ../release123/fritzing.pc.zip ~/$TRAVIS_BUILD_NUMBER
+
 
       after_success:
         - ./aws_tasks.sh synchronize_up
