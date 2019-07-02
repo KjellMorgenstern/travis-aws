@@ -14,10 +14,10 @@ jobs:
         - ./aws_tasks.sh setup
 
       script:
-          - ./release_fritzing.bat
-          - ls .
-          - ls ..
-          - cp ../release123/fritzing.pc.zip ~/$TRAVIS_BUILD_NUMBER
+        - ./release_fritzing.bat
+        - ls .
+        - ls ..
+        - cp ../release123/fritzing.pc.zip ~/$TRAVIS_BUILD_NUMBER
 
 
       after_success:
