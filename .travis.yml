@@ -1,11 +1,19 @@
 language: minimal
 
-env:
-  global:
+stages:
+  - name: fast_check
+    if: type = push OR (type = pull_request AND slug != "KjellMorgenstern/tavis-aws")
+  - name: build_and_pack
+    if: type = push
 
 jobs:
   include:
-    - os: windows
+    - stage: fast_check
+      script: 
+      - echo "Very fast"
+
+    - stage: build_and_pack
+      os: windows
       language: cpp
 
       env:
