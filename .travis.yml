@@ -17,6 +17,8 @@ jobs:
         homebrew:
           packages:
           - md5sha1sum
+          - boost
+          - qt5
           update: true
 
       script:
@@ -28,10 +30,11 @@ jobs:
       language: cpp
       osx_image: xcode10.2
 
-      # addons:
-      #   homebrew:
-      #     packages:
-      #     - qt5
+      addons:
+        homebrew:
+          packages:
+          - qt5
+          - boost
 
       script:
         - echo "test" > test.txt
