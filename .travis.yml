@@ -9,24 +9,50 @@ stages:
 jobs:
   include:
     - stage: fast_check
-      script: 
-      - echo "Very fast"
-
-    - stage: build_and_pack
-      os: windows
+      os: osx
       language: cpp
+      osx_image: xcode10.1
 
-      env:
-      before_install:
-        - mkdir -p ~/$TRAVIS_BUILD_NUMBER
-        - ./aws_tasks.sh setup
+      addons:
+        homebrew:
+          packages:
+          - md5sha1sum
+          update: true
 
       script:
-        - ./build-windows.bat
-        - ls .
-        - ls ..
-        - cp $TRAVIS_BUILD_DIR/../release123/fritzing.pc.zip ~/$TRAVIS_BUILD_NUMBER
+        - echo "test" > test.txt
+        - md5sum test.txt
+
+    - stage: fast_check
+      os: osx
+      language: cpp
+      osx_image: xcode10.2
+
+      # addons:
+      #   homebrew:
+      #     packages:
+      #     - qt5
+
+      script:
+        - echo "test" > test.txt
+        - md5sum test.txt
 
 
-      after_success:
-        - ./aws_tasks.sh synchronize_up
+    # - stage: build_and_pack
+    #   os: windows
+    #   language: cpp
+
+    #   env:
+    #   before_install:
+    #     - mkdir -p ~/$TRAVIS_BUILD_NUMBER
+    #     - ./aws_tasks.sh setup
+
+    #   script:
+    #     - ./build-windows.bat
+    #     - ls .
+    #     - ls ..
+    #     - cp $TRAVIS_BUILD_DIR/../release123/fritzing.pc.zip ~/$TRAVIS_BUILD_NUMBER
+
+
+    #   after_success:
+    #     - ./aws_tasks.sh synchronize_up
