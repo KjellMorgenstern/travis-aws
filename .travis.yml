@@ -8,54 +8,31 @@ stages:
 
 jobs:
   include:
-    - stage: fast_check
-      os: osx
-      language: cpp
-      osx_image: xcode10.1
-
-      addons:
-        homebrew:
-          packages:
-          - md5sha1sum
-          - boost
-          - qt5
-          update: true
-
+    - stage: build_and_pack
+      name: Fedora
+      os: linux
+      language: minimal
+      services:
+        - docker
+      before_install:
+        - docker pull fritzing/build:fedora-31
       script:
-        - echo "test" > test.txt
-        - md5sum test.txt
+        - id
+        - echo $UID
+        - docker/release-linux.sh fedora-31 $TRAVIS_COMMIT-debug-continuous-$TRAVIS_BUILD_NUMBER.fedora-31
 
-    - stage: fast_check
-      os: osx
-      language: cpp
-      osx_image: xcode10.2
 
-      addons:
-        homebrew:
-          packages:
-          - qt5
-          - boost
-
+    - stage: build_and_pack
+      name: Bionic
+      os: linux
+      language: minimal
+      services:
+        - docker
+      before_install:
+        - docker pull fritzing/build:bionic
       script:
-        - echo "test" > test.txt
-        - md5sum test.txt
+        - id
+        - echo $UID
+        - docker/release-linux.sh bionic $TRAVIS_COMMIT-debug-continuous-$TRAVIS_BUILD_NUMBER.bionic
 
 
-    # - stage: build_and_pack
-    #   os: windows
-    #   language: cpp
-
-    #   env:
-    #   before_install:
-    #     - mkdir -p ~/$TRAVIS_BUILD_NUMBER
-    #     - ./aws_tasks.sh setup
-
-    #   script:
-    #     - ./build-windows.bat
-    #     - ls .
-    #     - ls ..
-    #     - cp $TRAVIS_BUILD_DIR/../release123/fritzing.pc.zip ~/$TRAVIS_BUILD_NUMBER
-
-
-    #   after_success:
-    #     - ./aws_tasks.sh synchronize_up
