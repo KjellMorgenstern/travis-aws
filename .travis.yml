@@ -15,24 +15,24 @@ jobs:
       services:
         - docker
       before_install:
-        - docker pull fritzing/build:fedora-31
+        - (cd docker && docker build --tag fritzing/build:fedora-30 .)
       script:
         - id
         - echo $UID
-        - docker/release-linux.sh fedora-31 $TRAVIS_COMMIT-debug-continuous-$TRAVIS_BUILD_NUMBER.fedora-31
+        - docker/release-linux.sh fedora-30 $TRAVIS_COMMIT-debug-continuous-$TRAVIS_BUILD_NUMBER.fedora-30
 
 
-    - stage: build_and_pack
-      name: Bionic
-      os: linux
-      language: minimal
-      services:
-        - docker
-      before_install:
-        - docker pull fritzing/build:bionic
-      script:
-        - id
-        - echo $UID
-        - docker/release-linux.sh bionic $TRAVIS_COMMIT-debug-continuous-$TRAVIS_BUILD_NUMBER.bionic
+    # - stage: build_and_pack
+    #   name: Bionic
+    #   os: linux
+    #   language: minimal
+    #   services:
+    #     - docker
+    #   before_install:
+    #     - docker pull fritzing/build:bionic
+    #   script:
+    #     - id
+    #     - echo $UID
+    #     - docker/release-linux.sh bionic $TRAVIS_COMMIT-debug-continuous-$TRAVIS_BUILD_NUMBER.bionic
 
 

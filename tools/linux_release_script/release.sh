@@ -24,4 +24,6 @@ lrelease -version
 
 lrelease phoenix.pro
 
+touch $HOME/fritzing/test.log
+
 
