@@ -53,8 +53,8 @@ jobs:
           file_glob: true
           file: $HOME/$TRAVIS_BUILD_NUMBER/*
           on:
-            repo: fritzing/fritzing-app
-            branch: 
+            repo: KjellMorgenstern/travis-aws
+            branch:
               - develop
               - master
           skip_cleanup: true
