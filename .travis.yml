@@ -4,7 +4,7 @@ stages:
   - name: fast_check
     if: type = push OR (type = pull_request AND repo != "KjellMorgenstern/travis-aws")
   - name: build_and_pack
-    if: type = push AND (repo = "KjellMorgenstern/travis-aws")
+    if: type = push AND (repo = "KjellMorgenstern/travis-aaws")
   - name: deploy_to_github
 
 jobs:
