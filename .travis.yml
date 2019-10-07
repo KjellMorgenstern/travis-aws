@@ -2,9 +2,9 @@ language: minimal
 
 stages:
   - name: fast_check
-    if: type = push OR (type = pull_request AND slug != "KjellMorgenstern/travis-aws")
+    if: type = push OR (type = pull_request AND repo != "KjellMorgenstern/travis-aws")
   - name: build_and_pack
-    if: type = push
+    if: type = push AND (repo = "KjellMorgenstern/travis-aws")
   - name: deploy_to_github
 
 jobs:
